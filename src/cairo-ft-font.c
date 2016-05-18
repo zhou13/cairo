@@ -1339,7 +1339,7 @@ _render_glyph_outline (FT_Face                    face,
 		       cairo_image_surface_t	**surface)
 {
     int rgba = FC_RGBA_UNKNOWN;
-    int lcd_filter = FT_LCD_FILTER_LEGACY;
+    int lcd_filter = FT_LCD_FILTER_DEFAULT;
     FT_GlyphSlot glyphslot = face->glyph;
     FT_Outline *outline = &glyphslot->outline;
     FT_Bitmap bitmap;
@@ -1374,13 +1374,13 @@ _render_glyph_outline (FT_Face                    face,
 	case CAIRO_LCD_FILTER_NONE:
 	    lcd_filter = FT_LCD_FILTER_NONE;
 	    break;
-	case CAIRO_LCD_FILTER_DEFAULT:
 	case CAIRO_LCD_FILTER_INTRA_PIXEL:
 	    lcd_filter = FT_LCD_FILTER_LEGACY;
 	    break;
 	case CAIRO_LCD_FILTER_FIR3:
 	    lcd_filter = FT_LCD_FILTER_LIGHT;
 	    break;
+	case CAIRO_LCD_FILTER_DEFAULT:
 	case CAIRO_LCD_FILTER_FIR5:
 	    lcd_filter = FT_LCD_FILTER_DEFAULT;
 	    break;
